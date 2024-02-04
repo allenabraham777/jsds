@@ -1,0 +1,50 @@
+{
+  "name": "js-dsa",
+  "version": "1.0.0",
+  "description": "Implementation of all data structures and algorithms in Javascript.",
+  "main": "build/index.js",
+  "repository": "git@github.com:allenabraham777/jsds.git",
+  "author": "allenabraham777 <allenabraham777@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "data-structures/*",
+    "algorithms/*",
+    "programs/*"
+  ],
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.1",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.2"
+  },
+  "scripts": {
+    "lint": "turbo lint",
+    "prettier": "turbo prettier",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "data-structures/*/src/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "algorithms/*/src/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "programs/*/src/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
