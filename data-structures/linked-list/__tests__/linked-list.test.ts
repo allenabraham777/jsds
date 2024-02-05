@@ -5,6 +5,16 @@ describe('Linked list', () => {
         const linkedList = new LinkedList();
         expect(linkedList.isEmpty()).toBe(true);
     });
+    test('Check head getter for LL', () => {
+        const linkedList = new LinkedList();
+        linkedList.fromArray([4, 5, 6]);
+        expect(linkedList._head!.getValue()).toEqual(4);
+    });
+    test('Check tail getter for LL', () => {
+        const linkedList = new LinkedList();
+        linkedList.fromArray([4, 5, 6]);
+        expect(linkedList._tail!.getValue()).toEqual(6);
+    });
     test('Check append LL', () => {
         const linkedList = new LinkedList<number>();
         linkedList.append(5);

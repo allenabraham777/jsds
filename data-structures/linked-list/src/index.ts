@@ -12,6 +12,14 @@ export default class LinkedList<T> {
         return !this.head;
     }
 
+    get _head() {
+        return this.head;
+    }
+
+    get _tail() {
+        return this.tail;
+    }
+
     public prepend(value: T) {
         const newNode = new LinkedListNode(value);
         newNode.setNext(this.head);

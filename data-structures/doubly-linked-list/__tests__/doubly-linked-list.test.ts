@@ -5,6 +5,16 @@ describe('Linked list', () => {
         const doublyLinkedList = new DoublyLinkedList();
         expect(doublyLinkedList.isEmpty()).toBe(true);
     });
+    test('Check head getter for DLL', () => {
+        const doublyLinkedList = new DoublyLinkedList();
+        doublyLinkedList.fromArray([4, 5, 6]);
+        expect(doublyLinkedList._head!.getValue()).toEqual(4);
+    });
+    test('Check tail getter for DLL', () => {
+        const doublyLinkedList = new DoublyLinkedList();
+        doublyLinkedList.fromArray([4, 5, 6]);
+        expect(doublyLinkedList._tail!.getValue()).toEqual(6);
+    });
     test('Check toReverseArray function DLL', () => {
         const doublyLinkedList = new DoublyLinkedList();
         doublyLinkedList.fromArray([9, 8, 7, 6, 5, 4]);
