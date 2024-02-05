@@ -28,6 +28,7 @@
   "scripts": {
     "lint": "turbo lint",
     "prettier": "turbo prettier",
+    "test": "turbo test",
     "prepare": "husky"
   },
   "lint-staged": {
