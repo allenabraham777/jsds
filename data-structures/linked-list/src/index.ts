@@ -8,6 +8,10 @@ export default class LinkedList<T> {
         this.tail = null;
     }
 
+    public isEmpty() {
+        return !this.head;
+    }
+
     public prepend(value: T) {
         const newNode = new LinkedListNode(value);
         newNode.setNext(this.head);

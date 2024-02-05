@@ -3,7 +3,7 @@ import LinkedList from '../src';
 describe('Linked list', () => {
     test('Check empty LL', () => {
         const linkedList = new LinkedList();
-        expect(linkedList.toArray()).toEqual([]);
+        expect(linkedList.isEmpty()).toBe(true);
     });
     test('Check append LL', () => {
         const linkedList = new LinkedList<number>();

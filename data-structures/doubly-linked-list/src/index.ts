@@ -9,6 +9,10 @@ export default class DoublyLinkedList<T> {
         this.tail = null;
     }
 
+    public isEmpty() {
+        return !this.head;
+    }
+
     public prepend(value: T) {
         const newNode = new DoublyLinkedListNode(value);
         if (!this.head) {
