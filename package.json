@@ -29,6 +29,7 @@
     "lint": "turbo lint",
     "prettier": "turbo prettier",
     "test": "turbo test",
+    "build": "turbo build",
     "prepare": "husky"
   },
   "lint-staged": {
