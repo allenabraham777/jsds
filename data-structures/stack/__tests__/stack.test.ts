@@ -1,7 +1,7 @@
 import Stack from '../src';
 
 describe('Stack', () => {
-    test('Check empty Queue', () => {
+    test('Check empty Stack', () => {
         const stack = new Stack();
         expect(stack.isEmpty()).toBe(true);
     });

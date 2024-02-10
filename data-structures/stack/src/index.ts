@@ -1,6 +1,6 @@
 import LinkedList from '@js-dsa/linked-list';
 
-export default class Queue<T> {
+export default class Stack<T> {
     private linkedList: LinkedList<T>;
     constructor() {
         this.linkedList = new LinkedList<T>();
