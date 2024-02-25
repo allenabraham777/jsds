@@ -16,7 +16,7 @@ export class BinaryTreeNode<T> {
         return this._left;
     }
 
-    set setLeft(_left: BinaryTreeNode<T> | null) {
+    set left(_left: BinaryTreeNode<T> | null) {
         this._left = _left;
     }
 
@@ -24,7 +24,7 @@ export class BinaryTreeNode<T> {
         return this._right;
     }
 
-    set setRight(_right: BinaryTreeNode<T> | null) {
+    set right(_right: BinaryTreeNode<T> | null) {
         this._right = _right;
     }
 
