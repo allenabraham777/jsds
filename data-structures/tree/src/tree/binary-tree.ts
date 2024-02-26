@@ -63,11 +63,11 @@ export class BinaryTree<T> {
     public toPostorderArray(): T[] {
         const postorder = [];
         const stack = new Stack<BinaryTreeNode<T>>();
-        const prev = this.root;
-        stack.push(prev);
+        let prev = null;
+        stack.push(this.root);
         while (!stack.isEmpty()) {
             const curr = stack.peek();
-            if (!curr || prev?.left === curr || prev?.right === curr) {
+            if (!prev || prev.left === curr || prev.right === curr) {
                 if (curr?.left) {
                     stack.push(curr.left);
                 } else if (curr?.right) {
@@ -76,14 +76,14 @@ export class BinaryTree<T> {
                     stack.pop();
                     postorder.push(curr.value);
                 }
-            } else if (curr?.left == prev) {
+            } else if (curr?.left === prev) {
                 if (curr?.right) {
                     stack.push(curr.right);
                 } else {
                     stack.pop();
                     postorder.push(curr.value);
                 }
-            } else {
+            } else if (curr?.right === prev) {
                 stack.pop();
                 postorder.push(curr.value);
             }
