@@ -60,7 +60,7 @@ export class BinaryTree<T> {
         }
         return inorder;
     }
-    public toPostorderArray(node = this.root): T[] {
+    public toPostorderArray(): T[] {
         const postorder = [];
         const stack = new Stack<BinaryTreeNode<T>>();
         const prev = this.root;
