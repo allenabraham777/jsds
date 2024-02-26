@@ -1,5 +1,6 @@
 import { BinaryTreeNode } from '../node';
 import Queue from '@js-dsa/queue';
+import Stack from '@js-dsa/stack';
 
 export class BinaryTree<T> {
     public root: BinaryTreeNode<T> | null;
@@ -25,24 +26,69 @@ export class BinaryTree<T> {
             }
         }
     }
-    public toPreorderArray(node = this.root): T[] {
-        if (!node) return [];
-        return [
-            node.value,
-            ...this.toPreorderArray(node.left),
-            ...this.toPreorderArray(node.right)
-        ];
+    public toPreorderArray(): T[] {
+        const preorder: T[] = [];
+        const stack = new Stack<BinaryTreeNode<T>>();
+        const curr = this.root;
+        while (curr || !stack.isEmpty()) {
+            if (curr) {
+                preorder.push(curr.value);
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                curr = stack.peek()!;
+                stack.pop();
+                curr = curr.right;
+            }
+        }
+        return preorder;
     }
-    public toInorderArray(node = this.root): T[] {
-        if (!node) return [];
-        return [...this.toInorderArray(node.left), node.value, ...this.toInorderArray(node.right)];
+    public toInorderArray(): T[] {
+        const inorder: T[] = [];
+        const stack = new Stack<BinaryTreeNode<T>>();
+        const curr = this.root;
+        while (curr || !stack.isEmpty()) {
+            if (curr) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                curr = stack.peek()!;
+                inorder.push(curr.value);
+                stack.pop();
+                curr = curr.right;
+            }
+        }
+        return inorder;
     }
     public toPostorderArray(node = this.root): T[] {
-        if (!node) return [];
-        return [
-            ...this.toPostorderArray(node.left),
-            ...this.toPostorderArray(node.right),
-            node.value
-        ];
+        const postorder = [];
+        const stack = new Stack<BinaryTreeNode<T>>();
+        const prev = this.root;
+        stack.push(prev);
+        while (!stack.isEmpty()) {
+            const curr = stack.peek();
+            if (!curr || prev?.left === curr || prev?.right === curr) {
+                if (curr?.left) {
+                    stack.push(curr.left);
+                } else if (curr?.right) {
+                    stack.push(curr.right);
+                } else {
+                    stack.pop();
+                    postorder.push(curr.value);
+                }
+            } else if (curr?.left == prev) {
+                if (curr?.right) {
+                    stack.push(curr.right);
+                } else {
+                    stack.pop();
+                    postorder.push(curr.value);
+                }
+            } else {
+                stack.pop();
+                postorder.push(curr.value);
+            }
+            prev = curr;
+        }
+        return postorder;
     }
 }
