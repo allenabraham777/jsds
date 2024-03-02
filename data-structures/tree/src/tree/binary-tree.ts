@@ -9,9 +9,9 @@ export class BinaryTree<T> {
     }
     public fromArray(array: T[]) {
         if (!array.length) return;
-        const _root = new BinaryTreeNode(array[0]);
+        this.root = new BinaryTreeNode(array[0]);
         const queue = new Queue<BinaryTreeNode<T>>();
-        queue.enqueue(_root);
+        queue.enqueue(this.root);
         let i = 1;
         while (i < array.length && queue.peek()) {
             const curr = queue.peek()!;
@@ -26,10 +26,11 @@ export class BinaryTree<T> {
             }
         }
     }
+    // Node -> Left -> Right
     public toPreorderArray(): T[] {
         const preorder: T[] = [];
         const stack = new Stack<BinaryTreeNode<T>>();
-        const curr = this.root;
+        let curr = this.root;
         while (curr || !stack.isEmpty()) {
             if (curr) {
                 preorder.push(curr.value);
@@ -43,10 +44,11 @@ export class BinaryTree<T> {
         }
         return preorder;
     }
+    // Left -> Node -> Right
     public toInorderArray(): T[] {
         const inorder: T[] = [];
         const stack = new Stack<BinaryTreeNode<T>>();
-        const curr = this.root;
+        let curr = this.root;
         while (curr || !stack.isEmpty()) {
             if (curr) {
                 stack.push(curr);
@@ -60,11 +62,12 @@ export class BinaryTree<T> {
         }
         return inorder;
     }
+    // Left -> Right -> Node
     public toPostorderArray(): T[] {
         const postorder = [];
         const stack = new Stack<BinaryTreeNode<T>>();
         let prev = null;
-        stack.push(this.root);
+        if (this.root) stack.push(this.root);
         while (!stack.isEmpty()) {
             const curr = stack.peek();
             if (!prev || prev.left === curr || prev.right === curr) {
@@ -74,7 +77,7 @@ export class BinaryTree<T> {
                     stack.push(curr.right);
                 } else {
                     stack.pop();
-                    postorder.push(curr.value);
+                    postorder.push(curr!.value);
                 }
             } else if (curr?.left === prev) {
                 if (curr?.right) {
