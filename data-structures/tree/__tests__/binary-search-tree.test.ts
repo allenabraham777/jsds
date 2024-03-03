@@ -27,4 +27,18 @@ describe("Binary Search Tree", () => {
         const preorder = bst.toInorderArray()
         expect(preorder).toEqual([-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20]);
     })
+    test("Check tree delete", () => {
+        const array = [5, 8, 1, 2, 4, 3, 9, 7, 6];
+        const bst = new BinarySearchTree();
+        bst.fromArray(array);
+        let preorder = bst.toInorderArray();
+        expect(preorder).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        let node = bst.deleteNode(5);
+        expect(node?.value).toBe(5);
+        preorder = bst.toInorderArray();
+        expect(preorder).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
+        node = bst.deleteNode(20);
+        expect(node).toBeNull();
+        expect(preorder).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
+    })
 })

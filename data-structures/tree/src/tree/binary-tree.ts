@@ -94,4 +94,13 @@ export class BinaryTree<T> {
         }
         return postorder;
     }
+    protected findInorderSuccessorWithParent(node: BinaryTreeNode<T>) {
+        let parent = node.right;
+        let curr = parent?.left;
+        while (curr?.left) {
+            parent = curr;
+            curr = curr.left;
+        }
+        return { parent, successor: curr };
+    }
 }
