@@ -41,4 +41,8 @@ export class BinaryTreeNode<T> {
     get height(): number {
         return Math.max(this.leftHeight, this.rightHeight);
     }
+
+    get balanceFactor(): number {
+        return this.leftHeight - this.rightHeight;
+    }
 }
