@@ -5,12 +5,8 @@ export const insertionSort = <T>(array: T[], comparator = baseComparator<T>): T[
     for (let i = 1; i < n; i++) {
         const element = array[i];
         let j;
-        for (j = i - 1; j >= 0; j--) {
-            if (comparator(array[j], element) === 1) {
-                array[j + 1] = array[j];
-            } else {
-                break;
-            }
+        for (j = i - 1; j >= 0 && comparator(array[j], element) === 1; j--) {
+            array[j + 1] = array[j];
         }
         array[j + 1] = element;
     }
