@@ -2,17 +2,18 @@ import { baseComparator } from './utils/baseComparator';
 
 export const bubbleSort = <T>(array: T[], comparator = baseComparator<T>): T[] => {
     const n = array.length;
-    for (let i = 1; i < n; i++) {
-        const element = array[i];
-        let j;
-        for (j = i - 1; j >= 0; j--) {
-            if (comparator(array[j], element) === 1) {
-                array[j + 1] = array[j];
-            } else {
-                break;
+    let isSwapped: boolean;
+    for (let i = 0; i < n - 1; i++) {
+        isSwapped = false;
+        for (let j = 0; j < n - 1 - i; j++) {
+            if (comparator(array[j], array[j + 1]) === 1) {
+                const temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+                isSwapped = true;
             }
         }
-        array[j + 1] = element;
+        if (!isSwapped) break;
     }
     return array;
 };
