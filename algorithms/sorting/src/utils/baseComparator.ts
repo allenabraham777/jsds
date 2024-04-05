@@ -7,3 +7,5 @@ export const baseComparator = <T>(a: T, b: T): -1 | 0 | 1 => {
         return 1;
     }
 };
+
+export type BaseComparatorFn<T> = typeof baseComparator<T>;
