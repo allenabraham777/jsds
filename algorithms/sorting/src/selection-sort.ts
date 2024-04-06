@@ -1,4 +1,5 @@
 import { baseComparator } from './utils/baseComparator';
+import { swap } from './utils/swap';
 
 export const selectionSort = <T>(array: T[], comparator = baseComparator<T>): T[] => {
     const n = array.length;
@@ -9,9 +10,7 @@ export const selectionSort = <T>(array: T[], comparator = baseComparator<T>): T[
                 min = j;
             }
         }
-        const temp = array[i];
-        array[i] = array[min];
-        array[min] = temp;
+        swap(array, array, i, min);
     }
     return array;
 };

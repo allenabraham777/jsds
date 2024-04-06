@@ -1,4 +1,5 @@
 import { baseComparator } from './utils/baseComparator';
+import { swap } from './utils/swap';
 
 export const bubbleSort = <T>(array: T[], comparator = baseComparator<T>): T[] => {
     const n = array.length;
@@ -7,9 +8,7 @@ export const bubbleSort = <T>(array: T[], comparator = baseComparator<T>): T[] =
         isSwapped = false;
         for (let j = 0; j < n - 1 - i; j++) {
             if (comparator(array[j], array[j + 1]) === 1) {
-                const temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+                swap(array, array, j, j + 1);
                 isSwapped = true;
             }
         }

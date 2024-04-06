@@ -1,4 +1,5 @@
 import { type BaseComparatorFn } from '../utils/baseComparator';
+import { swap } from '../utils/swap';
 
 export const partition = <T>(
     array: T[],
@@ -8,22 +9,17 @@ export const partition = <T>(
 ) => {
     const pivot = array[end];
     let i = start - 1;
-    let temp;
 
     for (let j = start; j <= end - 1; j++) {
         if (comparator(array[j], pivot) === -1) {
             i++;
-            temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+            swap(array, array, i, j);
         }
     }
 
     i++;
 
-    temp = array[i];
-    array[i] = array[end];
-    array[end] = temp;
+    swap(array, array, i, end);
 
     return i;
 };
