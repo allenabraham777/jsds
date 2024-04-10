@@ -9,7 +9,6 @@ describe('Product of Array Except Self', () => {
     test('Case 2: [-1, 1, 0, -3, 3]', () => {
         const input = [1, 1, 0, 3, 3];
         const output = productExceptSelf(input);
-        console.log(output);
 
         expect(output).toEqual([0, 0, 9, 0, 0]);
     })
