@@ -1,7 +1,7 @@
-import { baseComparator } from '../utils/baseComparator';
+import { basicComparator } from '@js-dsa/commons';
 import { mergeInplaceAfterSorting } from './merge';
 
-export const mergeSort = <T>(array: T[], comparator = baseComparator<T>) => {
+export const mergeSort = <T>(array: T[], comparator = basicComparator) => {
     let p;
     const n = array.length;
     for (p = 2; p <= n; p *= 2) {

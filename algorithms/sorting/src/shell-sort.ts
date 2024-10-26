@@ -1,7 +1,7 @@
-import { baseComparator } from './utils/baseComparator';
-import { swap } from './utils/swap';
+import { type Comparator, utils, basicComparator } from '@js-dsa/commons';
+const { swap } = utils;
 
-export const shellSort = <T>(array: T[], comparator = baseComparator<T>) => {
+export const shellSort = <T>(array: T[], comparator: Comparator = basicComparator) => {
     let gap = Math.ceil(array.length / 2);
     while (gap > 0) {
         for (let i = 0; i + gap < array.length; i++) {

@@ -1,7 +1,7 @@
-import { baseComparator } from './utils/baseComparator';
-import { swap } from './utils/swap';
+import { type Comparator, utils, basicComparator } from '@js-dsa/commons';
+const { swap } = utils;
 
-export const selectionSort = <T>(array: T[], comparator = baseComparator<T>): T[] => {
+export const selectionSort = <T>(array: T[], comparator: Comparator = basicComparator): T[] => {
     const n = array.length;
     for (let i = 0; i < n - 1; i++) {
         let min = i;
