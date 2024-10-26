@@ -6,7 +6,7 @@ import Stack from '@js-dsa/stack';
 export class BinaryTree<T> {
     public root: BinaryTreeNode<T> | null;
 
-    constructor(protected comparator: Comparator = basicComparator) {
+    constructor(protected comparator: Comparator<T> = basicComparator<T>) {
         this.root = null;
     }
     public fromArray(array: T[]) {

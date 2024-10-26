@@ -7,7 +7,7 @@ export const mergeInplaceAfterSorting = <T>(
     rightStart: number,
     leftLength: number,
     rightLength: number,
-    comparator: Comparator
+    comparator: Comparator<T>
 ) => {
     let gap = Math.ceil((leftLength + rightLength) / 2);
     while (gap > 0) {
