@@ -1,7 +1,7 @@
 import { basicComparator, utils, type Comparator } from '@js-dsa/commons';
 const { swap } = utils;
 
-export const bubbleSort = <T>(array: T[], comparator: Comparator = basicComparator): T[] => {
+export const bubbleSort = <T>(array: T[], comparator: Comparator<T> = basicComparator<T>): T[] => {
     const n = array.length;
     let isSwapped: boolean;
     for (let i = 0; i < n - 1; i++) {

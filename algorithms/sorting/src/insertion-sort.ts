@@ -1,6 +1,9 @@
 import { basicComparator, type Comparator } from '@js-dsa/commons';
 
-export const insertionSort = <T>(array: T[], comparator: Comparator = basicComparator): T[] => {
+export const insertionSort = <T>(
+    array: T[],
+    comparator: Comparator<T> = basicComparator<T>
+): T[] => {
     const n = array.length;
     for (let i = 1; i < n; i++) {
         const element = array[i];
