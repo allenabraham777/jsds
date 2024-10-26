@@ -7,8 +7,9 @@
   "author": "allenabraham777 <allenabraham777@gmail.com>",
   "license": "MIT",
   "workspaces": [
-    "data-structures/*",
     "algorithms/*",
+    "packages/*",
+    "data-structures/*",
     "programs/*"
   ],
   "private": true,
@@ -44,6 +45,11 @@
       "git add"
     ],
     "programs/*/src/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "packages/commons/*/src/**/*.{ts}": [
       "prettier --write",
       "eslint --fix",
       "git add"

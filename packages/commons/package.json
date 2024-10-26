@@ -1,16 +1,11 @@
 {
-    "name": "@js-dsa/tree",
+    "name": "@js-dsa/commons",
     "version": "1.0.0",
     "main": "build/index.js",
     "license": "MIT",
     "scripts": {
         "build": "rimraf build && tsc",
         "test": "jest --coverage"
-    },
-    "dependencies": {
-        "@js-dsa/commons": "*",
-        "@js-dsa/queue": "*",
-        "@js-dsa/stack": "*"
     },
     "devDependencies": {
         "@jest/globals": "^29.7.0",

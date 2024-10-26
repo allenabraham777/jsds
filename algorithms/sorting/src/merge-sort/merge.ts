@@ -1,5 +1,5 @@
-import { type BaseComparatorFn } from '../utils/baseComparator';
-import { swap } from '../utils/swap';
+import { type Comparator, utils } from '@js-dsa/commons';
+const { swap } = utils;
 
 export const mergeInplaceAfterSorting = <T>(
     array: T[],
@@ -7,7 +7,7 @@ export const mergeInplaceAfterSorting = <T>(
     rightStart: number,
     leftLength: number,
     rightLength: number,
-    comparator: BaseComparatorFn<T>
+    comparator: Comparator
 ) => {
     let gap = Math.ceil((leftLength + rightLength) / 2);
     while (gap > 0) {

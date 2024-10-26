@@ -1,7 +1,7 @@
-import { baseComparator } from '../utils/baseComparator';
+import { basicComparator } from '@js-dsa/commons';
 import { partition } from './partition';
 
-export const quickSort = <T>(array: T[], comparator = baseComparator<T>) => {
+export const quickSort = <T>(array: T[], comparator = basicComparator) => {
     const _quickSort = (array: T[], start: number, end: number) => {
         if (end <= start) return;
         const p = partition(array, start, end, comparator);

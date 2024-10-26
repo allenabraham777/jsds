@@ -1,12 +1,7 @@
-import { type BaseComparatorFn } from '../utils/baseComparator';
-import { swap } from '../utils/swap';
+import { type Comparator, utils } from '@js-dsa/commons';
+const { swap } = utils;
 
-export const partition = <T>(
-    array: T[],
-    start: number,
-    end: number,
-    comparator: BaseComparatorFn<T>
-) => {
+export const partition = <T>(array: T[], start: number, end: number, comparator: Comparator) => {
     const pivot = array[end];
     let i = start - 1;
 

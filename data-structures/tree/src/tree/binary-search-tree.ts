@@ -2,7 +2,6 @@ import { BinaryTreeNode } from '../node';
 import { BinaryTree } from './binary-tree';
 
 export class BinarySearchTree<T> extends BinaryTree<T> {
-    // TODO: Add special comparator function to compare object values
     public insert(value: T) {
         const node = new BinaryTreeNode<T>(value);
         if (!this.root) {
@@ -11,14 +10,14 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
         }
         let curr = this.root;
         while (curr) {
-            if (value < curr.value) {
+            if (this.comparator(value, curr.value) === -1) {
                 if (curr.left) {
                     curr = curr.left;
                 } else {
                     curr.left = node;
                     break;
                 }
-            } else if (value > curr.value) {
+            } else if (this.comparator(value, curr.value) === 1) {
                 if (curr.right) {
                     curr = curr.right;
                 } else {
@@ -39,9 +38,9 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
     public search(value: T) {
         let curr = this.root;
         while (curr) {
-            if (curr.value === value) {
+            if (this.comparator(value, curr.value) === 0) {
                 break;
-            } else if (value < curr.value) {
+            } else if (this.comparator(value, curr.value) === -1) {
                 curr = curr.left;
             } else {
                 curr = curr.right;
@@ -54,9 +53,9 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
         let parent = null;
         let curr = this.root;
         while (curr) {
-            if (curr.value === value) {
+            if (this.comparator(value, curr.value) === 0) {
                 break;
-            } else if (value < curr.value) {
+            } else if (this.comparator(value, curr.value) === -1) {
                 parent = curr;
                 curr = curr.left;
             } else {
@@ -92,7 +91,7 @@ export class BinarySearchTree<T> extends BinaryTree<T> {
                 return node;
             }
         }
-        const isLeft = value < parent.value;
+        const isLeft = this.comparator(value, parent.value) === -1;
         if (!successorParent) {
             if (node.left) {
                 if (isLeft) {
