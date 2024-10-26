@@ -1,10 +1,12 @@
 import { BinaryTreeNode } from '../node';
+import { basicComparator, type Comparator } from '@js-dsa/commons';
 import Queue from '@js-dsa/queue';
 import Stack from '@js-dsa/stack';
 
 export class BinaryTree<T> {
     public root: BinaryTreeNode<T> | null;
-    constructor() {
+
+    constructor(protected comparator: Comparator = basicComparator) {
         this.root = null;
     }
     public fromArray(array: T[]) {
@@ -16,13 +18,15 @@ export class BinaryTree<T> {
         while (i < array.length && queue.peek()) {
             const curr = queue.peek()!;
             queue.dequeue();
-            const left = new BinaryTreeNode(array[i++]);
+            const node = array[i++];
+            const left = node ? new BinaryTreeNode(node) : null;
             curr.left = left;
-            queue.enqueue(curr.left);
+            curr.left && queue.enqueue(curr.left);
             if (i < array.length) {
-                const right = new BinaryTreeNode(array[i++]);
+                const node = array[i++];
+                const right = node ? new BinaryTreeNode(node) : null;
                 curr.right = right;
-                queue.enqueue(curr.right);
+                curr.right && queue.enqueue(curr.right);
             }
         }
     }
@@ -64,12 +68,13 @@ export class BinaryTree<T> {
     }
     // Left -> Right -> Node
     public toPostorderArray(): T[] {
-        const postorder = [];
+        const postorder: T[] = [];
         const stack = new Stack<BinaryTreeNode<T>>();
         let prev = null;
-        if (this.root) stack.push(this.root);
-        while (!stack.isEmpty()) {
-            const curr = stack.peek();
+        if (!this.root) return postorder; // Handle empty tree explicitly
+        stack.push(this.root);
+        let curr = stack.peek();
+        while (curr && !stack.isEmpty()) {
             if (!prev || prev.left === curr || prev.right === curr) {
                 if (curr?.left) {
                     stack.push(curr.left);
@@ -77,26 +82,28 @@ export class BinaryTree<T> {
                     stack.push(curr.right);
                 } else {
                     stack.pop();
-                    postorder.push(curr!.value);
+                    postorder.push(curr.value);
                 }
-            } else if (curr?.left === prev) {
-                if (curr?.right) {
+            } else if (curr.left === prev) {
+                if (curr.right) {
                     stack.push(curr.right);
                 } else {
                     stack.pop();
                     postorder.push(curr.value);
                 }
-            } else if (curr?.right === prev) {
+            } else if (curr.right === prev) {
                 stack.pop();
                 postorder.push(curr.value);
             }
             prev = curr;
+            curr = stack.peek();
         }
         return postorder;
     }
     protected findInorderSuccessorWithParent(node: BinaryTreeNode<T>) {
+        if (!node.right) return { parent: null, successor: null }; // Handle no right subtree
         let parent = node.right;
-        let curr = parent?.left;
+        let curr = parent.left;
         while (curr?.left) {
             parent = curr;
             curr = curr.left;

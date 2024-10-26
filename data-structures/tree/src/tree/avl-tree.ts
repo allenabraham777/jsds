@@ -7,9 +7,9 @@ export class AvlTree<T> extends BinarySearchTree<T> {
             const newNode = new BinaryTreeNode(value);
             return newNode;
         }
-        if (value < root.value) {
+        if (this.comparator(value, root.value) === -1) {
             root.left = this.recursiveInsert(root.left, value);
-        } else if (value > root.value) {
+        } else if (this.comparator(value, root.value) === 1) {
             root.right = this.recursiveInsert(root.right, value);
         }
 
